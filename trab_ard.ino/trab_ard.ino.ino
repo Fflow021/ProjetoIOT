@@ -6,7 +6,10 @@ Servo servo2;
 void setup() {
   Serial.begin(9600);
   // pinMode do servo
-  pinMODE(2,OUTPUT);
+  pinMODE(4,OUTPUT);
+  pinMODE(5,OUTPUT);
+
+  //pinMODE(2,OUTPUT);
 }
 
 void loop() {
