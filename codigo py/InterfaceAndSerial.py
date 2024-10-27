@@ -32,7 +32,7 @@ def main():
     root.mainloop()  #loop principal, impede o código de seguir e permite capturar inputs
 
 def enviarOpcao(inteiroEnviado):
-    ard.write(bytes(str(inteiroEnviado), 'utf-8')) 
+    ard.write(b'inteiroEnviado') 
     time.sleep(0.05)
 
 main()
