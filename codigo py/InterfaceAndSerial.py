@@ -3,13 +3,13 @@ import serial
 import time
 
 port = 'COM3'
-arduino = serial.Serial(port,9600,.1)
+ard = serial.Serial(port,9600, timeout=0.1)
 
 def main():
-    root = tkinter.Tk()
-    root.title("Titulo da janela")
+    root = tk.Tk()
+    root.title("Janela")
     root.resizable(False, False)
-    root.geometry("600x600")
+    root.geometry("500x200")
 
     # Botão de quadrado
     buttonQuadrado = tk.Button(root, text="Criar quadrado")
@@ -19,7 +19,7 @@ def main():
     # Botão de Estrela
     buttonQuadrado = tk.Button(root, text="Criar estrela")
     buttonQuadrado['command'] = enviarInteiro(2)
-    buttonQuadrado.place(x = 200, y = 100)
+    buttonQuadrado.place(x = 205, y = 100)
 
     # Botão de Circulo
     buttonQuadrado = tk.Button(root, text="Criar circulo")
@@ -32,7 +32,7 @@ def main():
     root.mainloop()  #loop principal, impede o código de seguir e permite capturar inputs
 
 def enviarInteiro(inteiroEnviado):
-    arduino.write(bytes(inteiroEnviado, 'utf-8')) 
+    ard.write(bytes(inteiroEnviado, 'utf-8')) 
     time.sleep(0.05)
 
 main()
