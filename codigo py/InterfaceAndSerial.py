@@ -3,7 +3,7 @@ import serial
 import time
 
 port = 'COM7'
-ard = serial.Serial(port,9600, timeout=0.1)
+ard = serial.Serial(port,9600)
 
 def main():
     root = tk.Tk()
@@ -26,13 +26,16 @@ def main():
     buttonQuadrado['command'] = lambda: enviarOpcao(3)
     buttonQuadrado.place(x = 300, y = 100)
 
+    #resposta = ard.readline().decode().strip()
+    #print(resposta)
+
     root.iconify() #Minimiza a tela
     root.update()
     root.deiconify() #Maximiza a tela
     root.mainloop()  #loop principal, impede o código de seguir e permite capturar inputs
 
 def enviarOpcao(inteiroEnviado):
-    ard.write(b'inteiroEnviado') 
+    ard.write(f"{inteiroEnviado}\n".encode())
     time.sleep(0.05)
 
 main()

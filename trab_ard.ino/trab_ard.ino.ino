@@ -1,37 +1,48 @@
 #include <Servo.h>
 
-//Servo servo1;
-//Servo servo2;
+Servo eixo_x;
+Servo eixo_y;
 
 void setup() {
   Serial.begin(9600);
-  // pinMode do servo
-  //pinMODE(4,OUTPUT);
-  //pinMODE(5,OUTPUT);
-  //pinMODE(2,OUTPUT);
+  eixo_x.attach(9);
+  eixo_y.attach(10);
 
 }
 
 void loop() {
   if(Serial.available() > 0){  
-    char varParaLer = Serial.read();
+    int num = Serial.parseInt();
 
     // if para fazer o servo girar o suficiente para fazer um quadrado
-    if(varParaLer == '2'){
-      //servo1.write(0)
-      Serial.println("leu 1");
-    }
-
-    // if para fazer o servo girar o suficiente para fazer uma estrela
-    if(varParaLer == '3'){
-      //servo1.write(0)
-      Serial.println("leu 2");
-    }
-
-    // if para fazer o servo girar o suficiente para fazer um circulo
-    if(varParaLer == '3'){
-      //servo1.write(0)
-      Serial.println("leu 3");
+    if(num == 1){
+      delay(2000);
+      executarQuadrado();
+    } else if(num == 2){
+      // lógica de outra forma
+    } else if(num == 3){
+      // logica de outra forma
+    } else {
+        Serial.println("Numero não reconhcido"); // isso aqui tinha que ta aqui pra caso n tivesse um erro aleatório caisse no caso de num == 3  
     }
   }
 }
+  void executarQuadrado() {
+    int posicoes[4][2] = {
+      {0, 0},
+      {180, 0},
+      {180, 180},
+      {0, 180}
+    };
+
+    for (int i = 0; i < 4; i++) {
+      eixo_x.write(posicoes[i][0]);
+      eixo_y.write(posicoes[i][1]);
+      delay(2000);
+    }
+
+    // reset dos eixos
+    eixo_x.write(0);
+    eixo_y.write(0);
+    delay(2000);
+  }
