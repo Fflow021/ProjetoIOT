@@ -32,7 +32,7 @@ void loop() {
       {0, 0},
       {180, 0},
       {180, 180},
-      {0, 180}
+      {0, 0}
     };
 
     for (int i = 0; i < 4; i++) {
@@ -46,6 +46,7 @@ void loop() {
     delay(2000);
   }
 
+// dessa parte pra baixo infelizmente nao pude testar
   void executarTriangulo() {
     int posicoes[3][2] = {
       {0, 0},
