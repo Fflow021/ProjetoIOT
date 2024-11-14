@@ -5,6 +5,7 @@ Servo eixo_y;
 
 void setup() {
   Serial.begin(9600);
+  //eixo_z.attach(8)
   eixo_x.attach(9);
   eixo_y.attach(10);
 
@@ -14,16 +15,15 @@ void loop() {
   if(Serial.available() > 0){  
     int num = Serial.parseInt();
 
-    // if para fazer o servo girar o suficiente para fazer um quadrado
     if(num == 1){
       delay(2000);
       executarQuadrado();
     } else if(num == 2){
-      // lógica de outra forma
+      executarTriangulo();
     } else if(num == 3){
-      // logica de outra forma
+      executarCirculo();
     } else {
-        Serial.println("Numero não reconhcido"); // isso aqui tinha que ta aqui pra caso n tivesse um erro aleatório caisse no caso de num == 3  
+        Serial.println("Numero não reconhcido");
     }
   }
 }
@@ -41,8 +41,48 @@ void loop() {
       delay(2000);
     }
 
-    // reset dos eixos
     eixo_x.write(0);
     eixo_y.write(0);
     delay(2000);
   }
+
+  void executarTriangulo() {
+    int posicoes[3][2] = {
+      {0, 0},
+      {180, 0}, 
+      {90, 180}, 
+    };
+
+    for (int i = 0; i < 3; i++) {
+      eixo_x.write(posicoes[i][0]);
+      eixo_y.write(posicoes[i][1]);
+      delay(2000);
+    }
+
+    eixo_x.write(0);
+    eixo_y.write(0);
+    delay(2000); 
+}
+
+void executarCirculo() {
+    int posicoes[8][2] = {
+        {90, 0},
+        {128, 45},
+        {180, 90},
+        {128, 135},
+        {90, 180},
+        {52, 135},
+        {0, 90},
+        {52, 45}
+    };
+
+    for (int i = 0; i < 8; i++) {
+        eixo_x.write(posicoes[i][0]);
+        eixo_y.write(posicoes[i][1]);
+        delay(2000);
+    }
+
+    eixo_x.write(0);
+    eixo_y.write(0);
+    delay(2000);
+}

@@ -25,10 +25,7 @@ def main():
     buttonQuadrado = tk.Button(root, text="Criar circulo")
     buttonQuadrado['command'] = lambda: enviarOpcao(3)
     buttonQuadrado.place(x = 300, y = 100)
-
-    #resposta = ard.readline().decode().strip()
-    #print(resposta)
-
+    
     root.iconify() #Minimiza a tela
     root.update()
     root.deiconify() #Maximiza a tela
